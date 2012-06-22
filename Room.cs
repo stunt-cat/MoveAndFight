@@ -25,7 +25,6 @@ namespace MoveAndFight
 			this.pixelsY = squaresY*100;
 		}
 		
-		/*
 		public Boolean WallCollision(Character character, Direction direction)
 		{
 			Boolean result = false;
@@ -38,6 +37,5 @@ namespace MoveAndFight
 			}
 			return result;
 		}
-		*/
 	}
 }

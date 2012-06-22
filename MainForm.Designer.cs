@@ -71,15 +71,21 @@ namespace MoveAndFight
 			this.activateHeroButton1 = new System.Windows.Forms.Button();
 			this.activateHeroButton3 = new System.Windows.Forms.Button();
 			this.activateHeroButton4 = new System.Windows.Forms.Button();
+			this.roomSizeLabel = new System.Windows.Forms.Label();
+			this.roomSizeSelectorPanel = new System.Windows.Forms.Panel();
+			this.roomSelectorButton3 = new System.Windows.Forms.RadioButton();
+			this.roomSelectorButton2 = new System.Windows.Forms.RadioButton();
+			this.roomSelectorButton1 = new System.Windows.Forms.RadioButton();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.baddieSelectorPanel.SuspendLayout();
 			this.heroesSelectorPanel.SuspendLayout();
+			this.roomSizeSelectorPanel.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// pictureBox1
 			// 
-			this.pictureBox1.BackColor = System.Drawing.SystemColors.ControlLightLight;
-			this.pictureBox1.BackgroundImage = global::MoveAndFight.Images.room5x5;
+			this.pictureBox1.BackColor = System.Drawing.SystemColors.Control;
+			this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
 			this.pictureBox1.Location = new System.Drawing.Point(16, 71);
 			this.pictureBox1.Name = "pictureBox1";
 			this.pictureBox1.Size = new System.Drawing.Size(500, 500);
@@ -400,11 +406,60 @@ namespace MoveAndFight
 			this.activateHeroButton4.Visible = false;
 			this.activateHeroButton4.Click += new System.EventHandler(this.ActivateHeroButton4Click);
 			// 
+			// roomSizeLabel
+			// 
+			this.roomSizeLabel.Location = new System.Drawing.Point(397, 9);
+			this.roomSizeLabel.Name = "roomSizeLabel";
+			this.roomSizeLabel.Size = new System.Drawing.Size(103, 22);
+			this.roomSizeLabel.TabIndex = 28;
+			this.roomSizeLabel.Text = "Room size";
+			// 
+			// roomSizeSelectorPanel
+			// 
+			this.roomSizeSelectorPanel.Controls.Add(this.roomSelectorButton3);
+			this.roomSizeSelectorPanel.Controls.Add(this.roomSelectorButton2);
+			this.roomSizeSelectorPanel.Controls.Add(this.roomSelectorButton1);
+			this.roomSizeSelectorPanel.Location = new System.Drawing.Point(456, 6);
+			this.roomSizeSelectorPanel.Name = "roomSizeSelectorPanel";
+			this.roomSizeSelectorPanel.Size = new System.Drawing.Size(84, 59);
+			this.roomSizeSelectorPanel.TabIndex = 25;
+			// 
+			// roomSelectorButton3
+			// 
+			this.roomSelectorButton3.Location = new System.Drawing.Point(5, 37);
+			this.roomSelectorButton3.Name = "roomSelectorButton3";
+			this.roomSelectorButton3.Size = new System.Drawing.Size(53, 22);
+			this.roomSelectorButton3.TabIndex = 4;
+			this.roomSelectorButton3.Text = "5x5";
+			this.roomSelectorButton3.UseVisualStyleBackColor = true;
+			// 
+			// roomSelectorButton2
+			// 
+			this.roomSelectorButton2.Location = new System.Drawing.Point(5, 19);
+			this.roomSelectorButton2.Name = "roomSelectorButton2";
+			this.roomSelectorButton2.Size = new System.Drawing.Size(53, 22);
+			this.roomSelectorButton2.TabIndex = 3;
+			this.roomSelectorButton2.Text = "4x4";
+			this.roomSelectorButton2.UseVisualStyleBackColor = true;
+			// 
+			// roomSelectorButton1
+			// 
+			this.roomSelectorButton1.Checked = true;
+			this.roomSelectorButton1.Location = new System.Drawing.Point(5, 1);
+			this.roomSelectorButton1.Name = "roomSelectorButton1";
+			this.roomSelectorButton1.Size = new System.Drawing.Size(53, 22);
+			this.roomSelectorButton1.TabIndex = 2;
+			this.roomSelectorButton1.TabStop = true;
+			this.roomSelectorButton1.Text = "3x5";
+			this.roomSelectorButton1.UseVisualStyleBackColor = true;
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(897, 736);
+			this.Controls.Add(this.roomSizeSelectorPanel);
+			this.Controls.Add(this.roomSizeLabel);
 			this.Controls.Add(this.activateHeroButton4);
 			this.Controls.Add(this.activateHeroButton3);
 			this.Controls.Add(this.heroesSelectorPanel);
@@ -431,9 +486,15 @@ namespace MoveAndFight
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			this.baddieSelectorPanel.ResumeLayout(false);
 			this.heroesSelectorPanel.ResumeLayout(false);
+			this.roomSizeSelectorPanel.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
+		private System.Windows.Forms.RadioButton roomSelectorButton1;
+		private System.Windows.Forms.RadioButton roomSelectorButton2;
+		private System.Windows.Forms.RadioButton roomSelectorButton3;
+		private System.Windows.Forms.Panel roomSizeSelectorPanel;
+		private System.Windows.Forms.Label roomSizeLabel;
 		private System.Windows.Forms.Button activateHeroButton4;
 		private System.Windows.Forms.Button activateHeroButton3;
 		private System.Windows.Forms.RadioButton baddieSelectorButton4;
@@ -466,7 +527,6 @@ namespace MoveAndFight
 		private System.Windows.Forms.Button closeCombatButton;
 		private System.Windows.Forms.Button forwardButton;
 		private System.Windows.Forms.PictureBox pictureBox1;
-		
 		
 		}
 	}

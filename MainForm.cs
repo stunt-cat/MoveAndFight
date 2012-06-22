@@ -52,12 +52,9 @@ namespace MoveAndFight
 		public Character shotVictim;
 		
 		// Create Room for action to take place in
-		// TODO get user selected values for variable game setup
-		// i.e.
-		// int roomSquaresX;  (get from user input - form element to be created)
-		// int roomSquaresY;  (get from user input - form element to be created)
-		//
-		// Room room = new Room(roomSquaresX, roomSquaresY);
+		public Room room;
+		int roomSquaresX;
+		int roomSquaresY;
 		
 		ResourceManager resources = new ResourceManager("MoveAndFight.images", Assembly.GetExecutingAssembly());
 		private System.Drawing.Graphics g;
@@ -90,6 +87,24 @@ namespace MoveAndFight
 			
 			heroes = new List<Character>(numberOfHeroes);
 			
+			// Get room parameters from RadioBox in roomSelectorPanel - also select correct background image
+			if (roomSelectorButton1.Checked){
+				roomSquaresX = 3;
+				roomSquaresY = 5;
+				this.pictureBox1.BackgroundImage = global::MoveAndFight.Images.room3x5;
+			} else if (roomSelectorButton2.Checked){
+				roomSquaresX = 4;
+				roomSquaresY = 4;
+				this.pictureBox1.BackgroundImage = global::MoveAndFight.Images.room4x4;
+			} else if (roomSelectorButton3.Checked){
+				roomSquaresX = 5;
+				roomSquaresY = 5;
+				this.pictureBox1.BackgroundImage = global::MoveAndFight.Images.room5x5;
+			}
+			
+			room = new Room(roomSquaresX, roomSquaresY);
+			
+			
 			// Randomly select hero start point(s), ensuring there are no conflicts with other heroes (N.B. no baddies exist at this point)
 			for (int i = 0; i < numberOfHeroes; i++)
 			{
@@ -97,7 +112,6 @@ namespace MoveAndFight
 				Boolean pointAvailable = true;
 				
 				// Check other Hero locations and reassign bufferLocation until it is an available location
-				if(heroes.Count>0){
 					do{
 						// Assume location is initially free
 						pointAvailable = true;
@@ -112,7 +126,6 @@ namespace MoveAndFight
 							}
 						}
 					} while (!pointAvailable);	
-				}
 				
 				// bufferLocation is available, so assign it to new Hero
 				heroes.Add(new Hero (bufferLocation, (Direction) random.Next(4), i+1));
@@ -163,8 +176,7 @@ namespace MoveAndFight
 		
 		public Point RandomLocation()
 		{
-			// TODO make this generic by passing in Room size to the 'Next(x)', when Room class is up and running
-			Point randomPoint = new Point(random.Next(5)*100, random.Next(5)*100);
+			Point randomPoint = new Point(random.Next(roomSquaresX)*100, random.Next(roomSquaresY)*100);
 			return randomPoint;
 		}
 		
@@ -172,6 +184,7 @@ namespace MoveAndFight
 		{
 			baddieSelectorPanel.Visible = false;
 			heroesSelectorPanel.Visible = false;
+			roomSizeSelectorPanel.Visible = false;
 			gameOverButton.Visible = false;
 			startButton.Visible = false;
 			forwardButton.Enabled = true;
@@ -262,13 +275,7 @@ namespace MoveAndFight
 			Boolean moveProblem = false;
 				
 			// Check hero isn't trying to walk into a wall
-			if (activeHero.facing == Direction.North && activeHero.location.Y == 0
-		    || activeHero.facing == Direction.East && activeHero.location.X == 400
-		    || activeHero.facing == Direction.South && activeHero.location.Y == 400
-		    || activeHero.facing == Direction.West && activeHero.location.X == 0)
-			{
-				moveProblem = true;
-			}
+			if (room.WallCollision(activeHero, activeHero.facing)) moveProblem = true;
 			
 			// Check hero isn't trying to walk into baddie(s) or other hero(es)
 			everybody = heroes.Concat(baddies);
@@ -313,13 +320,7 @@ namespace MoveAndFight
 				baddieMoveDirection = (Direction)(random.Next(4));
 				
 				// Check no wall
-				if (baddieMoveDirection == Direction.North && movingBaddie.location.Y == 0
-				    || baddieMoveDirection == Direction.East && movingBaddie.location.X == 400
-				    || baddieMoveDirection == Direction.South && movingBaddie.location.Y == 400
-				    || baddieMoveDirection == Direction.West && movingBaddie.location.X == 0)
-				{
-					moveProblem = true;
-				}
+				if (room.WallCollision(movingBaddie, baddieMoveDirection)) moveProblem = true;
 				
 				// check baddie isn't trying to walk into baddie(s) or hero(es)
 				foreach (Character anybody in everybody)
@@ -614,6 +615,7 @@ namespace MoveAndFight
 			startButton.Visible = true;
 			heroesSelectorPanel.Visible = true;
 			baddieSelectorPanel.Visible = true;
+			roomSizeSelectorPanel.Visible = true;
 			gameOverButton.Visible = false;
 		}
 	}
