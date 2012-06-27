@@ -364,6 +364,7 @@ namespace MoveAndFight
 			leftTurnButton.Enabled = false;
 			rightTurnButton.Enabled = false;
 			closeCombatButton.Enabled = false;
+			rangedCombatButton.Enabled = false;
 			activateHeroButton2.Enabled = false;
 		}
 		
@@ -374,6 +375,7 @@ namespace MoveAndFight
 			leftTurnButton.Enabled = true;
 			rightTurnButton.Enabled = true;
 			closeCombatButton.Enabled = true;
+			rangedCombatButton.Enabled = true;
 			activateHeroButton2.Enabled = true;
 			DrawLocation();
 		}
