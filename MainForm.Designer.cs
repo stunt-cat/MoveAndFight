@@ -482,7 +482,7 @@ namespace MoveAndFight
 			this.Controls.Add(this.closeCombatButton);
 			this.Controls.Add(this.pictureBox1);
 			this.Name = "MainForm";
-			this.Text = "Graphics Tester";
+			this.Text = "Move And Fight";
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			this.baddieSelectorPanel.ResumeLayout(false);
 			this.heroesSelectorPanel.ResumeLayout(false);
